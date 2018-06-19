@@ -18,8 +18,8 @@ import java.util.Date;
  * @version 1.0
  */
 public class Telnet {
-    private TelnetClient telnet = new TelnetClient();//Cliente Telnet
-    private Fecha date; //Instancia de objeto fecha
+    private TelnetClient telnet = new TelnetClient();           //Cliente Telnet
+    private Fecha date;                                         //Instancia de objeto fecha
     private InputStream in;
     private PrintStream out;
     private String prompt = "#"; //Prompt en la cosola

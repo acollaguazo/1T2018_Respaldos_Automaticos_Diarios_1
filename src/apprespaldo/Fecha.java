@@ -20,13 +20,13 @@ public class Fecha {
     
     
     public Fecha(){
-    Calendar calendario= Calendar.getInstance(); //Instanciamos un objeto calendario
-    this.anio= calendario.get(Calendar.YEAR);// obtenemos el año
-    this.mes= Integer.toString(calendario.get(Calendar.MONTH)+1);//obtenemos el mes
-    this.dia= calendario.get(Calendar.DAY_OF_MONTH);//obtenemos el dia del mes
+    Calendar calendario= Calendar.getInstance();                    //Instanciamos un objeto calendario
+    this.anio= calendario.get(Calendar.YEAR);                       // obtenemos el año actual
+    this.mes= Integer.toString(calendario.get(Calendar.MONTH)+1);   //obtenemos el mes actual
+    this.dia= calendario.get(Calendar.DAY_OF_MONTH);                //obtenemos el dia del mes
     }
     
-     /**Get y Set del atributo dia*/
+     /**funciones Get y Set del atributo dia*/
     public int getDia() {
         return dia;
     }
@@ -35,7 +35,7 @@ public class Fecha {
         this.dia = dia;
     }
     
-    /**Get y Set del atributo mes*/
+    /**fucniones Get y Set del atributo mes*/
     public String getMes() {
         return mes;
     }
@@ -44,7 +44,7 @@ public class Fecha {
         this.mes = mes;
     }
     
-    /**Get y Set del atributo año*/
+    /**funciones Get y Set del atributo año*/
     public int getAnio() {
         return anio;
     }

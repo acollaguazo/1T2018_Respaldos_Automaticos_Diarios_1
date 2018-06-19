@@ -42,6 +42,7 @@ public class MenuRouter extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -62,6 +63,17 @@ public class MenuRouter extends javax.swing.JFrame {
         bt_descargar = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -70,13 +82,12 @@ public class MenuRouter extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 153));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Georgia", 0, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("ROUTERS ");
 
-        bt_atras.setIcon(new javax.swing.ImageIcon("C:\\Users\\cardenasm\\Desktop\\Sheyla\\iconos\\Back_50px.png")); // NOI18N
         bt_atras.setText("jLabel1");
-        bt_atras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bt_atras.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bt_atras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_atrasMouseClicked(evt);
@@ -90,19 +101,17 @@ public class MenuRouter extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(bt_atras, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
+                .addGap(130, 130, 130)
                 .addComponent(jLabel4)
-                .addGap(296, 296, 296))
+                .addContainerGap(366, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(16, 16, 16)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_atras, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jLabel4))
                 .addContainerGap())
         );
 
@@ -114,10 +123,9 @@ public class MenuRouter extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Router R-GYE");
+        jLabel3.setText("Router R_Core");
 
-        bt_rgye.setIcon(new javax.swing.ImageIcon("C:\\Users\\cardenasm\\Desktop\\Sheyla\\iconos\\Next page_30px.png")); // NOI18N
-        bt_rgye.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bt_rgye.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bt_rgye.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_rgyeMouseClicked(evt);
@@ -149,10 +157,9 @@ public class MenuRouter extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Light", 1, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Router R-UIO");
+        jLabel6.setText("Router R_ISP");
 
-        bt_rquito.setIcon(new javax.swing.ImageIcon("C:\\Users\\cardenasm\\Desktop\\Sheyla\\iconos\\Next page_30px.png")); // NOI18N
-        bt_rquito.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bt_rquito.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bt_rquito.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_rquitoMouseClicked(evt);
@@ -184,10 +191,9 @@ public class MenuRouter extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Light", 1, 20)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Router R-CUE");
+        jLabel9.setText("Router R_Remote");
 
-        bt_rcuenca.setIcon(new javax.swing.ImageIcon("C:\\Users\\cardenasm\\Desktop\\Sheyla\\iconos\\Next page_30px.png")); // NOI18N
-        bt_rcuenca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bt_rcuenca.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bt_rcuenca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_rcuencaMouseClicked(evt);
@@ -200,10 +206,10 @@ public class MenuRouter extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(32, 32, 32)
                 .addComponent(bt_rcuenca)
-                .addGap(18, 18, 18))
+                .addGap(0, 0, 0))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,7 +241,7 @@ public class MenuRouter extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 240, 280));
@@ -250,8 +256,7 @@ public class MenuRouter extends javax.swing.JFrame {
         jLabel2.setText("( Seleccione un archivo de la lista )");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, -1, -1));
 
-        bt_descargar.setIcon(new javax.swing.ImageIcon("C:\\Users\\cardenasm\\Desktop\\Sheyla\\iconos\\Downloading Updates_40px.png")); // NOI18N
-        bt_descargar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bt_descargar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         bt_descargar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_descargarMouseClicked(evt);
@@ -386,6 +391,7 @@ public class MenuRouter extends javax.swing.JFrame {
     private javax.swing.JLabel bt_rcuenca;
     private javax.swing.JLabel bt_rgye;
     private javax.swing.JLabel bt_rquito;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -12,21 +12,17 @@ import javax.swing.JTextField;
  * Clase AppRespaldo
  * Muestra la estructuta que deberia tener una Ventana en Java con la libreria
  * Swing, instancia la ventana Principal.
- * @author grupo2
+ * @author grupo1
  * @version  1.0
  */
 public class AppRespaldo extends JFrame implements ActionListener {
 
     private Principal inicio;           // etiqueta o texto no editable
-            // caja de texto, para insertar datos
-             // boton con una determinada accion
 
     public AppRespaldo() {
-        super(); 
-        this.inicializarComponentes();// usamos el contructor de la clase padre JFrame
-         // inicializamos los atributos o componentes
+        super();                        // usamos el contructor de la clase padre JFrame
+        this.inicializarComponentes();  // inicializamos los atributos o componentes
     }
-
 
     private void inicializarComponentes() {
         // creamos los componentes
@@ -36,8 +32,7 @@ public class AppRespaldo extends JFrame implements ActionListener {
 
 
     public static void main(String[] args) {
-           // creamos una ventana
-                new AppRespaldo().inicio.setVisible(true); // hacemos visible la ventana creada
+                new AppRespaldo().inicio.setVisible(true); // creamos una ventana y hacemos visible la ventana creada
     }
 
     @Override
