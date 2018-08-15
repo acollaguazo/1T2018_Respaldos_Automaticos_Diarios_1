@@ -5,17 +5,36 @@
  */
 package apprespaldo;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author crist
  */
 public class MenuArchivosRespaldo extends javax.swing.JFrame {
-
+    ClienteFTP cliente;
+    DefaultListModel listaSW_GYE,listaROU_GYE,listaROU_UIO,listaTodosDispositivos;
+    private Fecha date;
+    public Principal principal;
+    Ping ping;
     /**
      * Creates new form MenuArchivosRespaldo
      */
     public MenuArchivosRespaldo() {
         initComponents();
+        this.setLocationRelativeTo(null);  //centra la ventana
+        cliente = new ClienteFTP();
+            
+        listaSW_GYE = new DefaultListModel();
+        listaROU_GYE = new DefaultListModel();
+        listaROU_UIO = new DefaultListModel();
+        listaTodosDispositivos= new DefaultListModel();
     }
 
     /**
@@ -31,27 +50,41 @@ public class MenuArchivosRespaldo extends javax.swing.JFrame {
         panelRectTranslucido1 = new org.edisoncor.gui.panel.PanelRectTranslucido();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
+        listaDeArchivosDeRespaldo = new javax.swing.JList<>();
+        btnDescargar = new javax.swing.JButton();
+        seleccDispositivo = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtDia = new javax.swing.JTextField();
+        txtMes = new javax.swing.JTextField();
+        txtAnio = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        btnConsultar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panel1.setIcon(new javax.swing.ImageIcon("F:\\enrutamiento y conmutacion\\1T2018_Respaldos_Automaticos_Diarios_1-master\\src\\Imagenes\\ciscoDataCenter.jpg")); // NOI18N
-
-        jLabel1.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Archivos de configuracion respaldados");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listaDeArchivosDeRespaldo);
 
-        jButton1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jButton1.setText("descargar");
+        btnDescargar.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        btnDescargar.setText("descargar");
+        btnDescargar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDescargarMouseClicked(evt);
+            }
+        });
+        btnDescargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDescargarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRectTranslucido1Layout = new javax.swing.GroupLayout(panelRectTranslucido1);
         panelRectTranslucido1.setLayout(panelRectTranslucido1Layout);
@@ -67,7 +100,7 @@ public class MenuArchivosRespaldo extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelRectTranslucido1Layout.createSequentialGroup()
                         .addGap(189, 189, 189)
-                        .addComponent(jButton1)))
+                        .addComponent(btnDescargar)))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         panelRectTranslucido1Layout.setVerticalGroup(
@@ -78,25 +111,133 @@ public class MenuArchivosRespaldo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnDescargar)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
+
+        seleccDispositivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "todos", "SW_GYE", "ROU_GYE", "ROU_UIO" }));
+
+        jLabel2.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("DISPOSITIVO");
+
+        jLabel3.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("FECHA");
+
+        txtDia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDiaActionPerformed(evt);
+            }
+        });
+
+        txtMes.setText("\n");
+        txtMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMesActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("   dia       mes      año");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 3, 8)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("en numeros");
+
+        btnConsultar.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Criterios de busqueda");
+
+        btnCerrar.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        btnCerrar.setText("CERRAR");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(182, 182, 182)
-                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(196, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCerrar))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addContainerGap(55, Short.MAX_VALUE)
+                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(113, 113, 113))
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(panel1Layout.createSequentialGroup()
+                                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(seleccDispositivo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(panel1Layout.createSequentialGroup()
+                                                            .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addGap(61, 61, 61))))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGap(108, 108, 108)
+                                .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(panelRectTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(seleccDispositivo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(54, 54, 54)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel5)
+                        .addGap(47, 47, 47)
+                        .addComponent(btnConsultar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(btnCerrar)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -116,6 +257,154 @@ public class MenuArchivosRespaldo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDiaActionPerformed
+
+    private void txtMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMesActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        String DispositivoSelec = (String)seleccDispositivo.getSelectedItem();
+        String dia = txtDia.getText();//dia , mes, ano ingresados
+        String mes = txtMes.getText();
+        String anio = txtAnio.getText();
+        
+        if(!"".equals(dia) && !"".equals(mes) && !"".equals(anio)){
+            if(!(date.imprimirFecha().equals(dia + "_" + mes + "_" + anio))){//valida fecha actual
+                //validar di la fecha ingresada sea mayor al de inicio y menor a la actual
+                if(!(Integer.parseInt(dia)<principal.diaInicioSist && Integer.parseInt(mes)<principal.mesInicioSist)){
+                    if(Integer.parseInt(dia)<date.getDia() && Integer.parseInt(mes)<date.getMes()){
+                        if("SW_GYE".equals(DispositivoSelec)){
+                            cliente.changeDirectorio("//Documentos/SW_GYE");
+                            if(listaSW_GYE.isEmpty()){
+                                String fecha = dia + "_" + mes + "_" + anio;
+                                cliente.llenarListaxFecha(listaSW_GYE,fecha);
+                                this.listaDeArchivosDeRespaldo.setModel(listaSW_GYE);
+                            }else{
+                                this.listaDeArchivosDeRespaldo.setModel(listaSW_GYE);
+                            }
+                        }
+                        else if("ROU_GYE".equals(DispositivoSelec)){
+                            cliente.changeDirectorio("//Documentos/ROU_GYE");
+                            if(listaROU_GYE.isEmpty()){
+                                String fecha = dia + "_" + mes + "_" + anio;
+                                cliente.llenarListaxFecha(listaROU_GYE,fecha);
+                                this.listaDeArchivosDeRespaldo.setModel(listaROU_GYE);
+                            }else{
+                                this.listaDeArchivosDeRespaldo.setModel(listaROU_GYE);
+                            }
+                        }
+                        else if("ROU_UIO".equals(DispositivoSelec)){
+                            cliente.changeDirectorio("//Documentos/ROU_UIO");
+                            if(listaROU_UIO.isEmpty()){
+                                String fecha = dia + "_" + mes + "_" + anio;
+                                cliente.llenarListaxFecha(listaROU_UIO,fecha);
+                                this.listaDeArchivosDeRespaldo.setModel(listaROU_UIO);
+                            }else{
+                                this.listaDeArchivosDeRespaldo.setModel(listaROU_UIO);
+                            }
+                        }
+                        else if("todos".equals(DispositivoSelec)){
+                            if(listaTodosDispositivos.isEmpty()){
+                                String fecha = dia + "_" + mes + "_" + anio;
+                                cliente.changeDirectorio("//Documentos/SW_GYE");
+                                cliente.llenarListaxFecha(listaTodosDispositivos,fecha);
+                                
+                                cliente.changeDirectorio("//Documentos/ROU_GYE");
+                                cliente.llenarListaxFecha(listaTodosDispositivos,fecha);
+                                
+                                cliente.changeDirectorio("//Documentos/ROU_UIO");
+                                cliente.llenarListaxFecha(listaTodosDispositivos,fecha);
+                                
+                                this.listaDeArchivosDeRespaldo.setModel(listaTodosDispositivos);
+                            }else{
+                                this.listaDeArchivosDeRespaldo.setModel(listaTodosDispositivos);
+                            }
+                        }
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Existen archivos de respaldos de configuración del dispositivo de red desde la fecha de ingreso:\n"+
+                            principal.diaInicioSist+"/"+principal.mesInicioSist+"/"+principal.anioInicioSist);
+                    String hora = date.getHora()+":"+date.getMinutos()+":"+date.getSegundos();
+                    escribirArchivosNoEncontrados("NoFoundFile.txt", DispositivoSelec, date.imprimirFecha(), hora);
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "No puede consultar archivos de configuracion de fecha actual");
+            }
+        }
+        else{
+            if("SW_GYE".equals(DispositivoSelec)){
+                cliente.changeDirectorio("//Documentos/SW_GYE");
+                if(listaSW_GYE.isEmpty()){
+                cliente.llenarLista(listaSW_GYE);
+                this.listaDeArchivosDeRespaldo.setModel(listaSW_GYE);
+                }
+                else{
+                    this.listaDeArchivosDeRespaldo.setModel(listaSW_GYE);
+                }
+            }
+            else if("ROU_GYE".equals(DispositivoSelec)){
+                cliente.changeDirectorio("//Documentos/ROU_GYE");
+                if(listaROU_GYE.isEmpty()){
+                    cliente.llenarLista(listaROU_GYE);
+                    this.listaDeArchivosDeRespaldo.setModel(listaROU_GYE);
+                }else{
+                    this.listaDeArchivosDeRespaldo.setModel(listaROU_GYE);
+                }
+            }
+            else if("ROU_UIO".equals(DispositivoSelec)){
+                cliente.changeDirectorio("//Documentos/ROU_UIO");
+                if(listaROU_UIO.isEmpty()){
+                    cliente.llenarLista(listaROU_UIO);
+                    this.listaDeArchivosDeRespaldo.setModel(listaROU_UIO);
+                }else{
+                    this.listaDeArchivosDeRespaldo.setModel(listaROU_UIO);
+                }
+            }
+        }
+        
+        
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnDescargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescargarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDescargarActionPerformed
+
+    private void btnDescargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDescargarMouseClicked
+        // TODO add your handling code here:
+        String archivo = this.listaDeArchivosDeRespaldo.getSelectedValue();
+        if(archivo != null){
+            ping = new Ping("192.168.2.20");//ip del servidor
+            if(ping.isReachable()){
+                this.cliente.descargarArchivoFTP(archivo);
+                JOptionPane.showMessageDialog(this, "La descarga se realizó con éxito");
+                String hora = date.getHora()+":"+date.getMinutos()+":"+date.getSegundos();
+                String dispositivoSelec = (String)seleccDispositivo.getSelectedItem();
+                escribirArchivosDescargados(dispositivoSelec,date.imprimirFecha(),hora);
+            }
+            else{
+                String hora = date.getHora()+":"+date.getMinutos()+":"+date.getSegundos();
+                String dispositivoSelec = (String)seleccDispositivo.getSelectedItem();;
+                escribirArchivosErrorServidor(dispositivoSelec,date.imprimirFecha(),hora);
+                JOptionPane.showMessageDialog(this, "Falla de conexion con el servidor, intentelo de nuevo");
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "No ha seleccionado un file para consulta, intente de nuevo");
+        }
+        
+                         
+    }//GEN-LAST:event_btnDescargarMouseClicked
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,19 +434,86 @@ public class MenuArchivosRespaldo extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuArchivosRespaldo().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new MenuArchivosRespaldo().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnDescargar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> listaDeArchivosDeRespaldo;
     private org.edisoncor.gui.panel.Panel panel1;
     private org.edisoncor.gui.panel.PanelRectTranslucido panelRectTranslucido1;
+    private javax.swing.JComboBox<String> seleccDispositivo;
+    private javax.swing.JTextField txtAnio;
+    private javax.swing.JTextField txtDia;
+    private javax.swing.JTextField txtMes;
     // End of variables declaration//GEN-END:variables
+
+    private void escribirArchivosNoEncontrados(String nombreArchivo, String DispositivoSelec, String fecha, String hora) {
+        File archivo;
+        archivo = new File(nombreArchivo);
+        try{        
+            FileWriter w = new FileWriter(archivo);
+            BufferedWriter bw = new BufferedWriter(w);
+            PrintWriter wr = new PrintWriter(bw);
+            if(archivo.exists()) {//concatenamos en el archivo sin borrar lo existente
+                wr.append(fecha+"-"+hora+"-"+DispositivoSelec+"-"+"Error, no se encontro archivo");
+            } 
+            else {
+                wr.write(fecha+"-"+hora+"-"+DispositivoSelec+"-"+"Error, no se encontro archivo");
+            }
+            wr.close();//ahora cerramos los flujos de canales de datos,
+            bw.close();
+        }catch(IOException e){
+        
+        }
+    } 
+    private void escribirArchivosDescargados(String DispositivoSelec, String fecha, String hora) {
+        File archivo;
+        archivo = new File("ArchivoDescargados.txt");
+        try{        
+            FileWriter w = new FileWriter(archivo);
+            BufferedWriter bw = new BufferedWriter(w);
+            PrintWriter wr = new PrintWriter(bw);
+            if(archivo.exists()) {//concatenamos en el archivo sin borrar lo existente
+                wr.append(fecha+"-"+hora+"-"+DispositivoSelec+"-"+"Descarga exitosa");
+            } 
+            else {
+                wr.write(fecha+"-"+hora+"-"+DispositivoSelec+"-"+"Descarga exitosa");
+            }
+            wr.close();//ahora cerramos los flujos de canales de datos,
+            bw.close();
+        }catch(IOException e){
+        
+        }
+    }
+    private void escribirArchivosErrorServidor(String DispositivoSelec, String fecha, String hora) {
+        File archivo;
+        archivo = new File("ArchivoErrorConectividadServidor.txt");
+        try{        
+            FileWriter w = new FileWriter(archivo);
+            BufferedWriter bw = new BufferedWriter(w);
+            PrintWriter wr = new PrintWriter(bw);
+            if(archivo.exists()) {//concatenamos en el archivo sin borrar lo existente
+                wr.append(fecha+"-"+hora+"-"+DispositivoSelec+"-"+"error de conectividad");
+            } 
+            else {
+                wr.write(fecha+"-"+hora+"-"+DispositivoSelec+"-"+"error de conectividad");
+            }
+            wr.close();//ahora cerramos los flujos de canales de datos,
+            bw.close();
+        }catch(IOException e){
+        
+        }
+    }
 }
