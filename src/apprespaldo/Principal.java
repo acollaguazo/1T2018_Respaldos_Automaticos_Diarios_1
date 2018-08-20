@@ -17,31 +17,47 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+<<<<<<< HEAD
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Calendar;
+=======
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
 import java.util.Timer;
 import java.util.TimerTask;
 
 /*
  * Esta clase contiene la interfaz gráfica de la pantalla principal
+<<<<<<< HEAD
  * de nuestra aplicación. Permite escoger el tipo de dispositivo del que
  * se desea hacer respaldo
+=======
+ * de nuestra aplicación. Permite escoger el tipo de dispositivo al
+ * cual se quiere acceder de forma remota
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
  * @author Luis Macas, Christin Ochoa, Martin Herrera
  * @version:5/8/2018
  */
 public class Principal extends javax.swing.JFrame {
 
     private Ping ping;
+<<<<<<< HEAD
     public static final String URL = "jdbc:mysql://localhost:3306/datosrespaldo?allowMultiQueries=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+=======
+    public static final String URL = "jdbc:mysql://localhost:3306/dispositivosintermediosapprespaldo";
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
     public static final String USERNAME = "root";
     public static final String PASSWORD = "root1234";
     public int diaInicioSist;
     public int mesInicioSist;
     public int anioInicioSist;
+<<<<<<< HEAD
+=======
+    
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
     private Fecha date;
 
     public Principal() {
@@ -49,12 +65,21 @@ public class Principal extends javax.swing.JFrame {
         //cliente = new ClienteFTP();
         this.setLocationRelativeTo(null);
         //generacion automatica de archivos de respaldo de los dispositivos
+<<<<<<< HEAD
         //if(date.getHora()== 23 && date.getMinutos() == 59 && date.getSegundos() == 59){
             //int diaInicioSist = date.getDia();
             //int mesInicioSist = date.getMes();
             //int anioInicioSist = date.getAnio();
             //generarRespaldoDiario();
         //}
+=======
+        /*if(date.getHora()== 23 && date.getMinutos() == 59 && date.getSegundos() == 59){
+            int diaInicioSist = date.getDia();
+            int mesInicioSist = date.getMes();
+            int anioInicioSist = date.getAnio();
+            generarRespaldoDiario();
+        }*/
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
     }
 
     /**
@@ -85,7 +110,11 @@ public class Principal extends javax.swing.JFrame {
 
         panelShadow1.setDistance(8);
 
+<<<<<<< HEAD
         opcionesDeDispositivos.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+=======
+        opcionesDeDispositivos.setFont(new java.awt.Font("Georgia", 1, 11)); // NOI18N
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
         opcionesDeDispositivos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SW_GYE", "ROU_GYE", "ROU_UIO" }));
         opcionesDeDispositivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,16 +134,29 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("DISPOSITIVOS");
 
+<<<<<<< HEAD
         txtPassword.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
 
         textUser.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
+=======
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
         textUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textUserActionPerformed(evt);
             }
         });
 
+<<<<<<< HEAD
         BotonLogin.setFont(new java.awt.Font("Gill Sans MT", 1, 16)); // NOI18N
+=======
+        BotonLogin.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
         BotonLogin.setText("LOGIN");
         BotonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,6 +182,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTranslucido1Layout.createSequentialGroup()
                 .addContainerGap(112, Short.MAX_VALUE)
                 .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
                     .addComponent(BotonLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTranslucido1Layout.createSequentialGroup()
@@ -157,6 +200,23 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(opcionesDeDispositivos, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(143, 143, 143))))
+=======
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTranslucido1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(textUser, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BotonLogin, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTranslucido1Layout.createSequentialGroup()
+                        .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(38, 38, 38)
+                        .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(opcionesDeDispositivos, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                 .addGap(50, 50, 50))
         );
         panelTranslucido1Layout.setVerticalGroup(
@@ -169,6 +229,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(77, 77, 77))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTranslucido1Layout.createSequentialGroup()
                         .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+<<<<<<< HEAD
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(37, 37, 37)
@@ -181,6 +242,20 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(opcionesDeDispositivos, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addComponent(BotonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)))
+                .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(opcionesDeDispositivos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addComponent(BotonLogin)
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                 .addGap(20, 20, 20))
         );
 
@@ -256,7 +331,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void BotonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLoginActionPerformed
         
+<<<<<<< HEAD
         try { //obtendo datos de la base de datos creada 
+=======
+        try { 
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
             Connection conexionBaseDatos = getConnection();
             Statement st = conexionBaseDatos.createStatement();//Para enviar comandos SQL a la base de datos
             boolean faltaDispositivo = true;
@@ -328,10 +407,15 @@ public class Principal extends javax.swing.JFrame {
             System.out.println(e);
         }
         //Inicio de sistema de respaldo automatico
+<<<<<<< HEAD
         Calendar calendario = Calendar.getInstance();
         
         int horaEspera = 23- calendario.get(Calendar.HOUR_OF_DAY);//tiempo restante hasta las 23 pm
         int minEspera = 59- calendario.get(Calendar.MINUTE);//tiempo restante hasta las 59 min
+=======
+        int horaEspera = 23- date.getHora();//tiempo restante hasta las 23 pm
+        int minEspera = 59- date.getMinutos();//tiempo restante hasta las 59 min
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
         int Tespera=(horaEspera*3600000)+(minEspera*60000);//t de espera hasta 23:59 en ms
         Timer timer = new Timer();
        
@@ -342,10 +426,20 @@ public class Principal extends javax.swing.JFrame {
                 System.out.println("respaldo generado"); 
             }
         };
+<<<<<<< HEAD
         //timer.schedule(RealizarRespaldo,Tespera, 86400000);
         
         
     }   
+=======
+        timer.schedule(RealizarRespaldo,Tespera, 86400000);
+    }   
+            
+        //
+        
+        
+       
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
     public boolean conexionTelnet(String DispositivosIntermedios, String direccionIP){
         boolean estadoDeconexion = false;
         switch ( DispositivosIntermedios ) {
@@ -389,9 +483,21 @@ public class Principal extends javax.swing.JFrame {
                 
     }//GEN-LAST:event_opcionesDeDispositivosActionPerformed
     
+<<<<<<< HEAD
+    private void textUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUserActionPerformed
+=======
+    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textUserActionPerformed
+
     private void textUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textUserActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -438,6 +544,10 @@ public class Principal extends javax.swing.JFrame {
     private org.edisoncor.gui.panel.PanelImage panelImage1;
     private org.edisoncor.gui.panel.PanelShadow panelShadow1;
     private org.edisoncor.gui.panel.PanelTranslucido panelTranslucido1;
+<<<<<<< HEAD
+=======
+    private org.edisoncor.gui.textField.TextField textField2;
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
     private org.edisoncor.gui.textField.TextField textUser;
     private org.edisoncor.gui.passwordField.PasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
@@ -446,28 +556,47 @@ public class Principal extends javax.swing.JFrame {
         Telnet telnet1 = new Telnet("192.168.1.70","SW_GYE","SW_GYE");
         ping = new Ping("192.168.1.70");
         if (!ping.isReachable()){
+<<<<<<< HEAD
             escribirAccesoFallido("AccesosFallidos.txt","SW_GYE","192.168.1.70",date.imprimirFecha());
+=======
+            escribir("AccesosFallidos.txt","SW_GYE","192.168.1.70",date.imprimirFecha());
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
         }
         else{
             JOptionPane.showMessageDialog(null, "respaldo generado");
         }
+<<<<<<< HEAD
         Telnet telnet2 = new Telnet("192.168.1.1","ROU_GYE","ROU_GYE");
         ping = new Ping("192.168.1.1");
         if (!ping.isReachable()){
             escribirAccesoFallido("AccesosFallidos.txt","ROU_GYE","192.168.1.1",date.imprimirFecha());
+=======
+        Telnet telnet2 = new Telnet("200.93.195.1","ROU_GYE","ROU_GYE");
+        ping = new Ping("200.93.195.1");
+        if (!ping.isReachable()){
+            escribir("AccesosFallidos.txt","ROU_GYE","200.93.195.1",date.imprimirFecha());
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
         }
         else{
             JOptionPane.showMessageDialog(null, "respaldo generado");
         }
+<<<<<<< HEAD
         Telnet telnet3 = new Telnet("192.168.2.1","ROU_UIO","ROU_UIO");
         ping = new Ping("192.168.2.1");
         if (!ping.isReachable()){
             escribirAccesoFallido("AccesosFallidos.txt","ROU_UIO","192.168.2.1",date.imprimirFecha());
+=======
+        Telnet telnet3 = new Telnet("200.93.195.2","ROU_UIO","ROU_UIO");
+        ping = new Ping("200.93.195.2");
+        if (!ping.isReachable()){
+            escribir("AccesosFallidos.txt","ROU_UIO","200.93.195.2",date.imprimirFecha());
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
         }
         else{
             JOptionPane.showMessageDialog(null, "respaldo generado");
         }
     }
+<<<<<<< HEAD
     public void escribirAccesoFallido(String nombreArchivo,String hostname,String direccionIP,String fecha){
         Path path = Paths.get(nombreArchivo);
         try (BufferedWriter br = Files.newBufferedWriter(path,Charset.defaultCharset(), StandardOpenOption.CREATE_NEW)) {
@@ -480,6 +609,25 @@ public class Principal extends javax.swing.JFrame {
             }catch (Exception e1) {
                 e1.printStackTrace();
             }
+=======
+    public void escribir(String nombreArchivo,String hostname,String direccionIP,String fecha){
+        File archivo;
+        archivo = new File(nombreArchivo);
+        try{        
+            FileWriter w = new FileWriter(archivo);
+            BufferedWriter bw = new BufferedWriter(w);
+            PrintWriter wr = new PrintWriter(bw);
+            if(archivo.exists()) {//concatenamos en el archivo sin borrar lo existente
+                wr.append(fecha+":"+hostname+":"+direccionIP+":"+"Acceso fallido, intente de nuevo");
+            } 
+            else {
+                wr.write(fecha+":"+hostname+":"+direccionIP+":"+"Acceso fallido, intente de nuevo");
+            }
+            wr.close();//ahora cerramos los flujos de canales de datos,
+            bw.close();
+        }catch(IOException e){
+        
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
         }
         
     }

@@ -21,9 +21,15 @@ public class Telnet {
     private Fecha date;       //Instancia de objeto fecha
     private InputStream in;
     private PrintStream out;
+<<<<<<< HEAD
     private String privilegiado = "#"; //Prompt en la consola
     private String ayuda = "?";//Prompt en la consola
     private String admiracion = "!";//Prompt en la consola
+=======
+    private String prompt = "#"; //Prompt en la cosola
+    private String prompt2 = "?";//Prompt en la cosola
+    private String prompt3 = "!";//Prompt en la cosola
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
    
     /*Constructor
      @param ipaddress Es la direccion ip a la cual se desea hacer telnet
@@ -137,6 +143,7 @@ public class Telnet {
     */
     public void sendCommand(String hostname, String directory) {
         try {
+<<<<<<< HEAD
             readUntil(privilegiado);//lee hasta el caracter # dentro del dispositivo
             // copia el running-config en el sevidor 
             write("copy running-config ftp");
@@ -148,6 +155,19 @@ public class Telnet {
             //el nombre posee el sgt formato: hostname-dia_mes_año.cfg
             write("/home/usuarioFTP/" + directory + "/" + hostname + "" + date.imprimirFecha() + ".cfg");
             readUntil(admiracion);
+=======
+            readUntil(prompt);//lee hasta el caracter # dentro del dispositivo
+            // copia el running-config en el sevidor 
+            write("copy running-config ftp");
+            readUntil(prompt2 + " ");//lee hasta el caracter ? 
+            //se escribe la direción IP del servidor FTP
+            write("192.168.2.20"); 
+            readUntil(prompt2 + " ");//lee hasta el siguiente caracter ?
+            //dirección en la que se guardará el archivo
+            //el nombre posee el sgt formato: hostname-dia_mes_año.cfg
+            write("/Documentos/" + directory + "/" + hostname + "" + date.imprimirFecha() + ".cfg");
+            readUntil(prompt3);
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
         } catch (Exception e) {
             e.printStackTrace();
         }      

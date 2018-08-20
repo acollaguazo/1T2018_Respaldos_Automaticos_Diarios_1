@@ -115,6 +115,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace pref="112" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                                   <Component id="BotonLogin" alignment="1" min="-2" pref="104" max="-2" attributes="0"/>
                                   <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
@@ -135,6 +136,25 @@
                                               <Component id="opcionesDeDispositivos" min="-2" pref="151" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+=======
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabel1" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Component id="textUser" min="-2" pref="96" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Component id="panelImage1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="BotonLogin" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel2" min="-2" pref="112" max="-2" attributes="0"/>
+                                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="opcionesDeDispositivos" min="-2" pref="285" max="-2" attributes="0"/>
+                                          <Component id="txtPassword" min="-2" pref="96" max="-2" attributes="0"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                                       </Group>
                                   </Group>
                               </Group>
@@ -153,6 +173,7 @@
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
+<<<<<<< HEAD
                                           <Component id="jLabel1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                           <Component id="textUser" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                       </Group>
@@ -160,16 +181,33 @@
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                           <Component id="txtPassword" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+=======
+                                          <Component id="jLabel1" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                                          <Component id="textUser" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel2" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                                          <Component id="txtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                                       </Group>
                                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="3" attributes="0">
+<<<<<<< HEAD
                                   <Component id="jLabel3" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="opcionesDeDispositivos" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                               <Component id="BotonLogin" min="-2" pref="30" max="-2" attributes="0"/>
+=======
+                                  <Component id="jLabel3" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="opcionesDeDispositivos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="BotonLogin" min="-2" max="-2" attributes="0"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -230,6 +268,7 @@
                       </Properties>
                     </Component>
                     <Component class="org.edisoncor.gui.passwordField.PasswordField" name="txtPassword">
+<<<<<<< HEAD
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Rounded MT Bold" size="14" style="1"/>
@@ -237,12 +276,25 @@
                       </Properties>
                     </Component>
                     <Component class="org.edisoncor.gui.textField.TextField" name="textUser">
+=======
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPasswordActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="org.edisoncor.gui.textField.TextField" name="textUser">
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textUserActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="BotonLogin">
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Rounded MT Bold" size="14" style="1"/>
                         </Property>
                       </Properties>
                       <Events>
+<<<<<<< HEAD
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textUserActionPerformed"/>
                       </Events>
                     </Component>
@@ -257,6 +309,11 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonLoginActionPerformed"/>
                       </Events>
                     </Component>
+=======
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonLoginActionPerformed"/>
+                      </Events>
+                    </Component>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                     <Container class="org.edisoncor.gui.panel.PanelImage" name="panelImage1">
 
                       <Layout>

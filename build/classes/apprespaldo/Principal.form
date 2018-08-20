@@ -24,12 +24,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+=======
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+=======
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
       </Group>
     </DimensionLayout>
   </Layout>
@@ -39,12 +47,23 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
               <Component id="panel1" min="-2" max="-2" attributes="0"/>
+=======
+              <Component id="panel1" alignment="0" max="32767" attributes="0"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
               <Component id="panel1" min="-2" max="-2" attributes="0"/>
+=======
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="panel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
           </Group>
         </DimensionLayout>
       </Layout>
@@ -55,6 +74,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+<<<<<<< HEAD
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
@@ -66,17 +86,35 @@
                           </Group>
                       </Group>
                       <EmptySpace pref="50" max="32767" attributes="0"/>
+=======
+                      <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                      <Component id="panelShadow1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="131" max="32767" attributes="0"/>
+                      <Component id="textField2" min="-2" pref="677" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" pref="69" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Component id="panelShadow1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+=======
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="textField2" min="-2" pref="65" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="panelShadow1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="134" max="32767" attributes="0"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                   </Group>
               </Group>
             </DimensionLayout>
@@ -90,18 +128,31 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="panelTranslucido1" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+=======
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="panelTranslucido1" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD
                           <Component id="panelTranslucido1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="57" max="32767" attributes="0"/>
+=======
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="panelTranslucido1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -115,6 +166,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace pref="112" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD
                                   <Component id="BotonLogin" alignment="1" min="-2" pref="104" max="-2" attributes="0"/>
                                   <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
@@ -135,6 +187,25 @@
                                               <Component id="opcionesDeDispositivos" min="-2" pref="151" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+=======
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jLabel1" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Component id="textUser" min="-2" pref="96" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Component id="panelImage1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="BotonLogin" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel2" min="-2" pref="112" max="-2" attributes="0"/>
+                                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="opcionesDeDispositivos" min="-2" pref="285" max="-2" attributes="0"/>
+                                          <Component id="txtPassword" min="-2" pref="96" max="-2" attributes="0"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                                       </Group>
                                   </Group>
                               </Group>
@@ -153,6 +224,7 @@
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
+<<<<<<< HEAD
                                           <Component id="jLabel1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                           <Component id="textUser" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                       </Group>
@@ -160,16 +232,33 @@
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                           <Component id="txtPassword" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+=======
+                                          <Component id="jLabel1" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                                          <Component id="textUser" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel2" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                                          <Component id="txtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                                       </Group>
                                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="103" groupAlignment="3" attributes="0">
+<<<<<<< HEAD
                                   <Component id="jLabel3" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="opcionesDeDispositivos" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                               <Component id="BotonLogin" min="-2" pref="30" max="-2" attributes="0"/>
+=======
+                                  <Component id="jLabel3" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="opcionesDeDispositivos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="BotonLogin" min="-2" max="-2" attributes="0"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -179,7 +268,11 @@
                     <Component class="javax.swing.JComboBox" name="opcionesDeDispositivos">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+<<<<<<< HEAD
                           <Font name="Arial Rounded MT Bold" size="14" style="0"/>
+=======
+                          <Font name="Georgia" size="11" style="1"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="3">
@@ -199,7 +292,11 @@
                     <Component class="javax.swing.JLabel" name="jLabel1">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+<<<<<<< HEAD
                           <Font name="Georgia" size="18" style="1"/>
+=======
+                          <Font name="Georgia" size="14" style="1"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -210,7 +307,11 @@
                     <Component class="javax.swing.JLabel" name="jLabel2">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+<<<<<<< HEAD
                           <Font name="Georgia" size="18" style="1"/>
+=======
+                          <Font name="Georgia" size="14" style="1"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -221,7 +322,11 @@
                     <Component class="javax.swing.JLabel" name="jLabel3">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+<<<<<<< HEAD
                           <Font name="Georgia" size="18" style="1"/>
+=======
+                          <Font name="Georgia" size="14" style="1"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -230,6 +335,7 @@
                       </Properties>
                     </Component>
                     <Component class="org.edisoncor.gui.passwordField.PasswordField" name="txtPassword">
+<<<<<<< HEAD
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Arial Rounded MT Bold" size="14" style="1"/>
@@ -242,6 +348,13 @@
                           <Font name="Arial Rounded MT Bold" size="14" style="1"/>
                         </Property>
                       </Properties>
+=======
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPasswordActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="org.edisoncor.gui.textField.TextField" name="textUser">
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textUserActionPerformed"/>
                       </Events>
@@ -249,7 +362,11 @@
                     <Component class="javax.swing.JButton" name="BotonLogin">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+<<<<<<< HEAD
                           <Font name="Gill Sans MT" size="16" style="1"/>
+=======
+                          <Font name="Georgia" size="14" style="1"/>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
                         </Property>
                         <Property name="text" type="java.lang.String" value="LOGIN"/>
                       </Properties>
@@ -276,6 +393,7 @@
                 </Container>
               </SubComponents>
             </Container>
+<<<<<<< HEAD
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -287,6 +405,27 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Respaldo de Archivos de Configuraci&#xf3;n"/>
               </Properties>
+=======
+            <Component class="org.edisoncor.gui.textField.TextField" name="textField2">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                    <BevelBorder/>
+                  </Border>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="respaldo de archivos de configuracion"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Leelawadee UI" size="36" style="1"/>
+                </Property>
+                <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="66" red="0" type="rgb"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField2ActionPerformed"/>
+              </Events>
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
             </Component>
           </SubComponents>
         </Container>

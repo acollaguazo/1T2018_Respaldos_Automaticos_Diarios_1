@@ -41,9 +41,15 @@ public class ClienteFTP {
  * ademas se instancia una clase FTPClient y un file vacio en un principio.
 */
     public ClienteFTP() {
+<<<<<<< HEAD
         this.user = "usuarioFTP";
         this.password = "usuarioftp";
         this.ftp = "192.168.2.20";
+=======
+        this.user = "server";
+        this.password = "SERVIDOR123";
+        this.ftp = "192.168.1.15";
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
         ftpCliente = new FTPClient();
         this.fileOut = null;
         try {
@@ -174,7 +180,11 @@ public class ClienteFTP {
         try {
             ftpCliente.changeWorkingDirectory(ruta);
             //this.showDirectorio();
+<<<<<<< HEAD
             this.imprimirLista();
+=======
+            //this.imprimirLista();
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
         } catch (IOException ex) {
             Logger.getLogger(ClienteFTP.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -186,7 +196,11 @@ public class ClienteFTP {
     public void descargarArchivoFTP(String newFile) {
         try {
         //Se crea un carpeta en el Disco Local
+<<<<<<< HEAD
             File carpeta = new File("C:/Users/CRISTIN/Desktop/RespaldosDispositivos");
+=======
+            File carpeta = new File("C:/Users/Desktop/RespaldosDispositivos");
+>>>>>>> ce0a7f8cdd207ddd697df2e58fcddc970d913d83
             carpeta.mkdir();
             File downloadFile = new File(carpeta.getAbsolutePath() + "/" + newFile);
             fileOut = new FileOutputStream(downloadFile);
