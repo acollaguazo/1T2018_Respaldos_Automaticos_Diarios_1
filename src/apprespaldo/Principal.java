@@ -5,24 +5,56 @@
  */
 package apprespaldo;
 
-import java.awt.BorderLayout;
-import javax.swing.JFrame;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
 
-/**
+/*
  * Esta clase contiene la interfaz gráfica de la pantalla principal
  * de nuestra aplicación. Permite escoger el tipo de dispositivo del que
  * se desea hacer respaldo
- *@autor grupo2
- * @version 1.0
+ * @author Luis Macas, Christin Ochoa, Martin Herrera
+ * @version:5/8/2018
  */
 public class Principal extends javax.swing.JFrame {
-       Ping ping;
-    
+
+    private Ping ping;
+    public static final String URL = "jdbc:mysql://localhost:3306/datosrespaldo?allowMultiQueries=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    public static final String USERNAME = "root";
+    public static final String PASSWORD = "root1234";
+    public int diaInicioSist;
+    public int mesInicioSist;
+    public int anioInicioSist;
+    private Fecha date;
+
     public Principal() {
         initComponents();
         //cliente = new ClienteFTP();
         this.setLocationRelativeTo(null);
+        //generacion automatica de archivos de respaldo de los dispositivos
+        //if(date.getHora()== 23 && date.getMinutos() == 59 && date.getSegundos() == 59){
+            //int diaInicioSist = date.getDia();
+            //int mesInicioSist = date.getMes();
+            //int anioInicioSist = date.getAnio();
+            //generarRespaldoDiario();
+        //}
     }
 
     /**
@@ -38,54 +70,57 @@ public class Principal extends javax.swing.JFrame {
         panel1 = new org.edisoncor.gui.panel.Panel();
         panelShadow1 = new org.edisoncor.gui.panel.PanelShadow();
         panelTranslucido1 = new org.edisoncor.gui.panel.PanelTranslucido();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        opcionesDeDispositivos = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        passwordField1 = new org.edisoncor.gui.passwordField.PasswordField();
-        textField1 = new org.edisoncor.gui.textField.TextField();
-        jButton1 = new javax.swing.JButton();
+        txtPassword = new org.edisoncor.gui.passwordField.PasswordField();
+        textUser = new org.edisoncor.gui.textField.TextField();
+        BotonLogin = new javax.swing.JButton();
         panelImage1 = new org.edisoncor.gui.panel.PanelImage();
-        textField2 = new org.edisoncor.gui.textField.TextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        panel1.setIcon(new javax.swing.ImageIcon("F:\\enrutamiento y conmutacion\\1T2018_Respaldos_Automaticos_Diarios_1-master\\src\\Imagenes\\ciscoDataCenter.jpg")); // NOI18N
-
         panelShadow1.setDistance(8);
 
-        jComboBox2.setFont(new java.awt.Font("Georgia", 1, 11)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SW_Distribucion1", "SW_Distribucion2", "SW_Acceso", "R_Core", "R_Remote" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        opcionesDeDispositivos.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 14)); // NOI18N
+        opcionesDeDispositivos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SW_GYE", "ROU_GYE", "ROU_UIO" }));
+        opcionesDeDispositivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                opcionesDeDispositivosActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("USER");
 
-        jLabel2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("PASSWORD");
 
-        jLabel3.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("DISPOSITIVOS");
 
-        passwordField1.setText("passwordField1");
+        txtPassword.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jButton1.setText("LOGIN");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        textUser.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 14)); // NOI18N
+        textUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                textUserActionPerformed(evt);
             }
         });
 
-        panelImage1.setIcon(new javax.swing.ImageIcon("F:\\enrutamiento y conmutacion\\1T2018_Respaldos_Automaticos_Diarios_1-master\\src\\Imagenes\\login-icon.png")); // NOI18N
+        BotonLogin.setFont(new java.awt.Font("Gill Sans MT", 1, 16)); // NOI18N
+        BotonLogin.setText("LOGIN");
+        BotonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelImage1Layout = new javax.swing.GroupLayout(panelImage1);
         panelImage1.setLayout(panelImage1Layout);
@@ -103,42 +138,49 @@ public class Principal extends javax.swing.JFrame {
         panelTranslucido1Layout.setHorizontalGroup(
             panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTranslucido1Layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
-                .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addGroup(panelTranslucido1Layout.createSequentialGroup()
-                        .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(textField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(passwordField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(112, Short.MAX_VALUE)
+                .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BotonLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTranslucido1Layout.createSequentialGroup()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textUser, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTranslucido1Layout.createSequentialGroup()
+                            .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(29, 29, 29)
+                            .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(opcionesDeDispositivos, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(143, 143, 143))))
                 .addGap(50, 50, 50))
         );
         panelTranslucido1Layout.setVerticalGroup(
             panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTranslucido1Layout.createSequentialGroup()
                 .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
                 .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(passwordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addComponent(jButton1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTranslucido1Layout.createSequentialGroup()
+                        .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTranslucido1Layout.createSequentialGroup()
+                        .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textUser, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)))
+                .addGroup(panelTranslucido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(opcionesDeDispositivos, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addComponent(BotonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -146,91 +188,210 @@ public class Principal extends javax.swing.JFrame {
         panelShadow1.setLayout(panelShadow1Layout);
         panelShadow1Layout.setHorizontalGroup(
             panelShadow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelShadow1Layout.createSequentialGroup()
+            .addGroup(panelShadow1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelTranslucido1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(57, 57, 57))
         );
         panelShadow1Layout.setVerticalGroup(
             panelShadow1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelShadow1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(panelTranslucido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 57, Short.MAX_VALUE))
         );
 
-        textField2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        textField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        textField2.setText("respaldo de archivos de configuracion");
-        textField2.setFont(new java.awt.Font("Leelawadee UI", 1, 36)); // NOI18N
-        textField2.setSelectionColor(new java.awt.Color(0, 102, 255));
-        textField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField2ActionPerformed(evt);
-            }
-        });
+        jLabel4.setFont(new java.awt.Font("Leelawadee UI", 1, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Respaldo de Archivos de Configuración");
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(201, 201, 201)
-                .addComponent(panelShadow1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(131, Short.MAX_VALUE)
-                .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(panelShadow1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel4)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
                 .addComponent(panelShadow1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void BotonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLoginActionPerformed
+        
+        try { //obtendo datos de la base de datos creada 
+            Connection conexionBaseDatos = getConnection();
+            Statement st = conexionBaseDatos.createStatement();//Para enviar comandos SQL a la base de datos
+            boolean faltaDispositivo = true;
+            int IncorrectaUser = 0;
+            boolean faltaInfoLogin = false;
+            boolean aceptado = false;
+            String direccionIP = null;
+            String DispositivosIntermedios = null;
+            
+            ResultSet tablaRySW = st.executeQuery("SELECT * FROM routersyswitches"); //se realiza una consulta a la tabla. tablaRySW es la variable que representa la conexion hacia los datos de la tabla
+            while (tablaRySW.next() && faltaDispositivo ) {
+                DispositivosIntermedios = (String) opcionesDeDispositivos.getSelectedItem();
+                if(DispositivosIntermedios != null){
+                    if (tablaRySW.getString("hostname").equals(DispositivosIntermedios)){
+                        faltaDispositivo = false;
+                        direccionIP = tablaRySW.getString("direccionIP");
+                    }
+                }
+            }
+            tablaRySW.close();
+            
+            ResultSet tablaAdmin = st.executeQuery("SELECT * FROM administradores"); //se realiza una consulta a la tabla. rs es la variable que representa la conexion hacia los datos de la tabla
+            while (tablaAdmin.next() && !faltaInfoLogin && !aceptado ) {
+                String usuario = textUser.getText();
+                String contrasena = String.valueOf(txtPassword.getPassword());
+                System.out.println("esta"+usuario+"y"+contrasena+"l");
+                if(!"".equals(usuario) && !"".equals(contrasena)){  
+                    if (usuario.equals(tablaAdmin.getString("usuario"))) {
+                        System.out.println(usuario+" y "+tablaAdmin.getString("usuario"));
+                        if (contrasena.equals(tablaAdmin.getString("contraseña"))){
+                            aceptado = true;
+                            System.out.println(contrasena+" y "+tablaAdmin.getString("contraseña"));
+                        }
+                        else{
+                            JOptionPane.showMessageDialog(null, "contraseña incorrecta, intente de nuevo");
+                        }
+                    }
+                    else{
+                        IncorrectaUser+=1;
+                    }
+                    
+                }
+                else{
+                    faltaInfoLogin = true;
+                    JOptionPane.showMessageDialog(null, "Falta info, intentelo de nuevo");
+                }
+            }
+            if(IncorrectaUser == 3 ){
+                 JOptionPane.showMessageDialog(null, "usuario no autorizado");
+            }
+            tablaAdmin.close();
+            
+            boolean conexionRemota = conexionTelnet(DispositivosIntermedios , direccionIP);
+            if (aceptado && conexionRemota){
+                JOptionPane.showMessageDialog(null, "conexion remota exitosa");
+            } 
+            else {
+                JOptionPane.showMessageDialog(null, "Falla en la conexion con el dispositivo, intente mas tarde");
+            }
+            st.close();
+            conexionBaseDatos.close();
+            //paso a la ventana de menu archivos de respaldo
+            MenuArchivosRespaldo menu_ArchResp = new MenuArchivosRespaldo();
+            menu_ArchResp.setVisible(true);
+            menu_ArchResp.pack();
+            menu_ArchResp.setLocationRelativeTo(null);
+            this.dispose();  
+        } catch (HeadlessException | SQLException e) {
+            System.out.println(e);
+        }
+        //Inicio de sistema de respaldo automatico
+        Calendar calendario = Calendar.getInstance();
+        
+        int horaEspera = 23- calendario.get(Calendar.HOUR_OF_DAY);//tiempo restante hasta las 23 pm
+        int minEspera = 59- calendario.get(Calendar.MINUTE);//tiempo restante hasta las 59 min
+        int Tespera=(horaEspera*3600000)+(minEspera*60000);//t de espera hasta 23:59 en ms
+        Timer timer = new Timer();
+       
+        TimerTask RealizarRespaldo = new TimerSchedulePeriod() {
+            @Override
+            public void run() {
+                generarRespaldoDiario();
+                System.out.println("respaldo generado"); 
+            }
+        };
+        //timer.schedule(RealizarRespaldo,Tespera, 86400000);
+        
+        
+    }   
+    public boolean conexionTelnet(String DispositivosIntermedios, String direccionIP){
+        boolean estadoDeconexion = false;
+        switch ( DispositivosIntermedios ) {
+        case "SW_GYE":
+            Telnet telnetSW_GYE = new Telnet(direccionIP,DispositivosIntermedios);
+            //se realiza un ping al SW_GYE para determinar si encuentra conectado
+            ping = new Ping(direccionIP);
+            estadoDeconexion = ping.isReachable();
+            break;
+        case "ROU_GYE":
+            Telnet telnetROU_GYE = new Telnet(direccionIP,DispositivosIntermedios);
+            ping = new Ping(direccionIP);
+            estadoDeconexion = ping.isReachable();
+            break;
+        case "ROU_UIO":
+            Telnet telnetROU_UIO = new Telnet(direccionIP,DispositivosIntermedios);
+            ping = new Ping(direccionIP);
+            estadoDeconexion = ping.isReachable();
+            break;
+        default:
+            System.out.println("error, no existe dsipositivo" );
+            break;
+        }
+        return estadoDeconexion;
+    }
+    public static Connection getConnection() {
+        Connection conexionBaseDatos = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");//indica que vamos a utilizar para la conexion(conector j)
+            conexionBaseDatos = (Connection) DriverManager.getConnection(URL, USERNAME, PASSWORD);//inici la conexion a la base de datos
+            JOptionPane.showMessageDialog(null, "conexion con base de datos exitosa");
+        } catch (HeadlessException | ClassNotFoundException | SQLException e) {
+            System.out.println(e);
+        }
+        return conexionBaseDatos;  //returna la conexion a la base de datos
+    
+    }//GEN-LAST:event_BotonLoginActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void opcionesDeDispositivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionesDeDispositivosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
+                
+    }//GEN-LAST:event_opcionesDeDispositivosActionPerformed
+    
+    private void textUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField2ActionPerformed
+    }//GEN-LAST:event_textUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,26 +421,74 @@ public class Principal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Principal().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Principal().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton BotonLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> opcionesDeDispositivos;
     private org.edisoncor.gui.panel.Panel panel1;
     private org.edisoncor.gui.panel.PanelImage panelImage1;
     private org.edisoncor.gui.panel.PanelShadow panelShadow1;
     private org.edisoncor.gui.panel.PanelTranslucido panelTranslucido1;
-    private org.edisoncor.gui.passwordField.PasswordField passwordField1;
-    private org.edisoncor.gui.textField.TextField textField1;
-    private org.edisoncor.gui.textField.TextField textField2;
+    private org.edisoncor.gui.textField.TextField textUser;
+    private org.edisoncor.gui.passwordField.PasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
+
+    private void generarRespaldoDiario() {
+        Telnet telnet1 = new Telnet("192.168.1.70","SW_GYE","SW_GYE");
+        ping = new Ping("192.168.1.70");
+        if (!ping.isReachable()){
+            escribirAccesoFallido("AccesosFallidos.txt","SW_GYE","192.168.1.70",date.imprimirFecha());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "respaldo generado");
+        }
+        Telnet telnet2 = new Telnet("192.168.1.1","ROU_GYE","ROU_GYE");
+        ping = new Ping("192.168.1.1");
+        if (!ping.isReachable()){
+            escribirAccesoFallido("AccesosFallidos.txt","ROU_GYE","192.168.1.1",date.imprimirFecha());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "respaldo generado");
+        }
+        Telnet telnet3 = new Telnet("192.168.2.1","ROU_UIO","ROU_UIO");
+        ping = new Ping("192.168.2.1");
+        if (!ping.isReachable()){
+            escribirAccesoFallido("AccesosFallidos.txt","ROU_UIO","192.168.2.1",date.imprimirFecha());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "respaldo generado");
+        }
+    }
+    public void escribirAccesoFallido(String nombreArchivo,String hostname,String direccionIP,String fecha){
+        Path path = Paths.get(nombreArchivo);
+        try (BufferedWriter br = Files.newBufferedWriter(path,Charset.defaultCharset(), StandardOpenOption.CREATE_NEW)) {
+            br.write(fecha+":"+hostname+":"+direccionIP+":"+"Acceso fallido, intente de nuevo");
+            br.newLine();
+        } catch (Exception e) {
+            try (BufferedWriter br = Files.newBufferedWriter(path,Charset.defaultCharset(), StandardOpenOption.APPEND)) {
+            br.write(fecha+":"+hostname+":"+direccionIP+":"+"Acceso fallido, intente de nuevo");
+            br.newLine();
+            }catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+        
+    }
+
+    private static abstract class TimerSchedulePeriod extends TimerTask {
+
+        public TimerSchedulePeriod() {
+        }
+    }
+    
+
 }
